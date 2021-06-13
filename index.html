@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tab</title>
+    <style>
+      .container {
+        width: 80%;
+        border: 1px solid grey;
+        margin: 30px auto;
+        font-family: sans-serif;
+      }
+
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid grey;
+      }
+      .tab {
+        padding: 20px;
+      }
+
+      .tab:hover {
+        cursor: pointer;
+        background-color: antiquewhite;
+      }
+      .main {
+        padding: 20px;
+      }
+
+      .content {
+        display: none;
+      }
+
+      .content__active {
+        display: block;
+      }
+
+      .tab__active {
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tabs">
+        <div class="tab">clothes</div>
+        <div class="tab">pants</div>
+        <div class="tab">shoes</div>
+      </div>
+      <div class="main">
+        <div class="content" id="clothes">
+          <h4>Clothes</h4>
+          <p>Most trending clothes are provided</p>
+        </div>
+        <div class="content" id="pants">
+          <h4>Pants</h4>
+          <p>Pants with good quality are loaded</p>
+        </div>
+        <div class="content" id="shoes">
+          <h4>Shoes</h4>
+          <p>Shoes with excellent style are provided</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let tabs = document.getElementsByClassName('tab');
+      let contents = document.getElementsByClassName('content');
+
+      function toggleActive(targetTab) {
+        let activeContent = document.getElementById(`${targetTab.textContent}`);
+
+        [...tabs].forEach((tab) => {
+          tab.classList.remove('tab__active');
+        });
+        targetTab.classList.add('tab__active');
+
+        [...contents].forEach((content) => {
+          content.classList.remove('content__active');
+        });
+        activeContent.classList.add('content__active');
+      }
+
+      [...tabs].forEach((tab) =>
+        tab.addEventListener('click', (e) => {
+          toggleActive(e.currentTarget);
+        }),
+      );
+    </script>
+  </body>
+</html>
